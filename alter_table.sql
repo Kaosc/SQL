@@ -10,7 +10,7 @@ USE Games;
 -- Rename column 
 
 -- SQL Server (MSSQL)
-EXEC sp_rename 'gamelist.gameType2', 'gameType', 'COLUMN';
+EXEC sp_rename 'gamelist.gameType', 'gameTypeNew', 'COLUMN';
 
 -- MySQL 8.0+ & MariaDB 10.5+PostgreSQL
 -- ALTER TABLE gamelist 
