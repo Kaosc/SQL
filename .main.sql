@@ -1,3 +1,3 @@
-USE testdb;
+USE Games;
 
-SELECT * FROM Games;
+SELECT * FROM gamelist;

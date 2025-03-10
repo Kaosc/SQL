@@ -1,1 +1,1 @@
-DROP DATABASE Games;
+DROP TABLE gamelist;

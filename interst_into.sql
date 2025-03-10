@@ -1,5 +1,7 @@
+USE Games;
+
 INSERT INTO
-    Games (
+    gamelist (
         game_id,
         gameName,
         gameType,
