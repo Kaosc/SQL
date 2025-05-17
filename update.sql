@@ -1,8 +1,11 @@
-UPDATE Games
-SET lastPlayed = '2025-02-5'
-WHERE game_id = 1;
+USE Games;
 
--- Update specific column in a row
-UPDATE Games
-SET gameType = 'SURVIVAL'
+UPDATE gamelist
+SET gameType = 'Survival'
 WHERE game_id = 5;
+
+UPDATE gamelist
+SET website = 'https://www.counter-strike.net/'
+WHERE gameName = 'Counter-Strike 2';
+
+SELECT * FROM gamelist;

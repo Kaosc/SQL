@@ -1,14 +1,8 @@
-USE Games;
+USE Northwind;
+GO
 
-SELECT * FROM gamelist
-WHERE gameType IN ('Horror', 'FPS')
-AND achievementCount > 25;
+SELECT * FROM GetCustomersByCountry('Germany');
 
-SELECT gameType, SUM(hoursPlayed) FROM gamelist
-WHERE gameType IN ('Horror', 'FPS')
-GROUP BY gameType
-
-SELECT gameName, gameType, hoursPlayed FROM gamelist
-WHERE gameType IN ('Horror', 'FPS')
-AND hoursPlayed > 10
-ORDER BY hoursPlayed DESC;
+EXEC [Sales by Year]
+   @Beginning_Date = '1996-01-01',
+   @Ending_Date = '2000-12-31';
