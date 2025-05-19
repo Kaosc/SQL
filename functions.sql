@@ -1,18 +1,40 @@
 USE Northwind;
 GO
 
--- Inline
-IF EXISTS (SELECT * FROM Customers WHERE Country = 'USA')
-   BEGIN
-      PRINT 'USA Customers Found'
-   END
-ELSE
-   BEGIN
-      PRINT 'No USA Customers Found'
-   END
+-- This is a table-valued function where it just returns a table
+-- without using and BEGIN/END block.
+GO CREATE FUNCTION dbo.getProducts () RETURNS TABLE AS RETURN (
+   SELECT
+      ProductID,
+      ProductName,
+      QuantityPerUnit,
+      UnitPrice,
+      UnitsInStock
+   FROM
+      Products
+)
 GO
+-- But when there is a logic or a condition to be checked, we need to use the BEGIN/END block.
+-- This is the same function but with a condition.
+CREATE FUNCTION dbo.filteredProducts (@minPrice MONEY)
+RETURNS @result TABLE (
+    ProductID INT,
+    ProductName NVARCHAR(40),
+    UnitPrice MONEY
+)
+AS
+BEGIN
+    INSERT INTO @result
+    SELECT ProductID, ProductName, UnitPrice
+    FROM Products
+    WHERE UnitPrice >= @minPrice;
 
--- Create a scalar function
+    RETURN;
+END;
+GO
+------------------------------------------------------------
+
+-- Create a scalar function - returns a single value 
 CREATE FUNCTION GetCustomerCount()
 RETURNS INT
 AS
