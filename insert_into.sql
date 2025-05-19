@@ -17,6 +17,7 @@ VALUES
     ('skylord', 'skylord@example.com'),
     ('Hyle', 'hyle@example.com'),
     ('Kiri', 'kiri@example.com')
+GO
 
 INSERT INTO GameList (
     UserID,
@@ -70,3 +71,23 @@ VALUES
     (10, 'Amnesia: Rebirth', 'Horror', 660, 170, '2027-08-30'),
     (10, 'Little Nightmares II', 'Horror', 680, 175, '2027-09-05'),
     (10, 'Phasmophobia', 'Horror', 700, 180, '2027-10-10');
+GO
+
+INSERT INTO GameReviews (
+    GameID,
+    UserID,
+    Review,
+    ReviewViews,
+    CreatedAt
+)
+VALUES 
+    (1, 1, 'Great game with amazing graphics!', 100, '2025-01-15'),
+    (2, 1, 'Intense gameplay and great mechanics.', 150, '2025-02-20'),
+    (3, 2, 'A masterpiece in storytelling.', 200, '2025-03-25'),
+    (4, 2, 'Epic battles and stunning visuals.', 250, '2025-04-30'),
+    (5, 3, 'Endless possibilities in this sandbox world.', 300, '2025-05-05'),
+    (6, 3, 'Fun and addictive arcade game!', 350, '2025-06-10'),
+    (7, 4, 'An unforgettable journey through a rich world.', 400, '2025-07-15'),
+    (8, 4, 'A classic RPG that never gets old.', 450, '2025-08-20'),
+    (9, 5, 'A thrilling open-world experience.', 500, '2025-09-25'),
+    (10, 5, 'A must-play for action-adventure fans.', 550, '2025-10-30');

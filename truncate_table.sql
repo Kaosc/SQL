@@ -1,2 +1,4 @@
+USE Games;
+
 -- clear table without dropping it
-TRUNCATE TABLE Games;
+TRUNCATE TABLE GameReviews;
