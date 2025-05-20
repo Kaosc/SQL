@@ -34,7 +34,7 @@ END;
 GO
 ------------------------------------------------------------
 
--- Create a scalar function - returns a single value 
+-- Create a scalar function - RETURNING A SINGLE VALUE
 CREATE FUNCTION GetCustomerCount()
 RETURNS INT
 AS
@@ -45,7 +45,8 @@ BEGIN
 END
 GO
 
--- Create a table-valued function
+-- Create a table-valued function - RETURNING A TABLE
+-- This function returns a table with all columns from the specified table
 CREATE FUNCTION GetCustomersByCountry(@Country NVARCHAR(50))
 RETURNS TABLE
 AS
@@ -55,7 +56,8 @@ RETURN
    );
 GO
 
--- Create a table-valued function
+-- Multi statement table-valued function - RETURNING A TABLE
+-- This function returns a table with two columns: CustomerID and CompanyName
 CREATE FUNCTION GetCustomersSummary(@Country NVARCHAR(50))
 RETURNS @Result TABLE (CustomerID INT, CompanyName NVARCHAR(100))
 AS
@@ -69,15 +71,17 @@ BEGIN
 END
 GO
 
+-- USING THE FUNCTION
 
--- use the function
+-- use the function in a SELECT statement
 SELECT * FROM GetCustomersByCountry('Germany');
 
--- use the function
+-- use the function with exec command
 EXEC [Sales by Year]
    @Beginning_Date = '1996-01-01',
    @Ending_Date = '2000-12-31';
 
--- Delete the function
+-- DELETE THE FUNCTION
+
 DROP FUNCTION GetCustomersSummary;
 GO

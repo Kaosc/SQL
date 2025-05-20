@@ -1,2 +1,0 @@
-USE Northwind;
-GO
