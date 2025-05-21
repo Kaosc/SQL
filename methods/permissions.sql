@@ -38,13 +38,19 @@ DROP USER test_user
 -- ON <object_type>::<object_name>
 -- TO <principal_name>;
 
-GRANT SELECT ON Employees TO ali; -- TABLE
-GRANT INSERT, UPDATE ON Orders TO sales_user; -- TABLE
-GRANT EXECUTE ON OBJECT::GetCustomerData TO api_user; -- SCHEMA
+-- TABLE
+GRANT SELECT ON Employees TO intern 
+GRANT INSERT, UPDATE ON Orders TO sales_user;
+-- SCHEMA
+GRANT EXECUTE ON OBJECT::GetCustomerData TO api_user; 
 
-DENY DELETE ON Customers TO intern_user; -- TABLE
-DENY EXECUTE ON PROCEDURE::UpdateStock TO external_app; -- SCHEMA
+-- SCHEMA
+DENY DELETE ON Customers TO intern_user; 
+-- SCHEMA
+DENY EXECUTE ON PROCEDURE::UpdateStock TO external_app;
 
-REVOKE SELECT ON Employees FROM ali; -- TABLE
+-- SCHEMA
+REVOKE SELECT ON Employees FROM intern; -- TABLE
 REVOKE DELETE ON Orders FROM temp_user; -- TABLE
-REVOKE EXECUTE ON PROCEDURE::LogAccess FROM service_account; -- SCHEMA
+-- SCHEMA
+REVOKE EXECUTE ON PROCEDURE::LogAccess FROM service_account;

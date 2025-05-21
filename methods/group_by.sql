@@ -4,13 +4,11 @@ GO
 -- List all orders per customer descending by order count
 SELECT
    COUNT(OrderID) AS orderCount,
-   contactName AS contactNameCount
+   ContactName
 FROM
    Orders
    JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 GROUP BY
-   contactName
+   ContactName
 ORDER BY
    orderCount DESC;
-
-GO
