@@ -7,7 +7,7 @@ GO
 CREATE FUNCTION getProducts(@ProductID INT) 
 RETURNS TABLE 
 AS 
-RETURN (
+RETURN ( -- Think this is a returning React Component where it just a component it self
    SELECT
       ProductID,
       ProductName,
@@ -32,16 +32,16 @@ RETURNS @result TABLE (
     UnitPrice INT
 )
 AS
-BEGIN
-    INSERT INTO @result -- insert into the table variable
+BEGIN -- Think this like returning a react component but we use a condition to check inside like 
+      -- defining const inside it and other kind of shit
+    INSERT INTO @result -- insert into the table variable -- This is why we need to use the BEGIN/END block
     SELECT ProductID, ProductName, UnitPrice
     FROM Products
     WHERE UnitPrice >= @minPrice;
 
-    RETURN; -- return the table variable
+    RETURN; -- return the table variable -- @result is not like a scalar variable — it's a special table variable that the function is designed to return. So no need to return it.
 END;
 GO
-
 
 -- Create a scalar function - RETURNING A SINGLE VALUE
 
