@@ -1,6 +1,8 @@
 USE Northwind;
 GO
 
+------------ CREATING STORED PROCEDURES ------------
+
 -- without parameters
 CREATE PROCEDURE GetAllCustomers
 AS
@@ -66,7 +68,7 @@ BEGIN
 END
 GO
 
----- USING THE PROCEDURES ----
+------------ USING THE PROCEDURES ------------
 
 -- without parameters
 EXEC GetAllCustomers;

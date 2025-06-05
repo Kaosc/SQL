@@ -1,31 +1,39 @@
+
+-- | Keyword / Clause     | Purpose                                                               |
+-- | -------------------- | --------------------------------------------------------------------- |
+-- | `INT IDENTITY(1,1)`  | Auto-incrementing number, starts at 1, increments by 1                |
+-- | `PRIMARY KEY`        | Uniquely identifies each row in the table                             |
+-- | `NOT NULL`           | Field must have a value                                               |
+-- | `UNIQUE`             | No duplicates allowed in this column                                  |
+-- | `NULL`               | Field can be empty                                                    |
+-- | `CHECK (...)`        | Adds validation rules on allowed values                               |
+-- | `DECIMAL(10,2)`      | Decimal number, 10 total digits, 2 after the dot                      |
+-- | `FOREIGN KEY`        | Links to another table's column                                       |
+-- | `REFERENCES`         | Defines which table/column the foreign key points to                  |
+-- | `ON UPDATE CASCADE`  | Automatically update this column if referenced column value changes   |
+-- | `ON DELETE SET NULL` | Set this column to NULL if referenced row is deleted                  |
+-- | `CONSTRAINT`         | Names a constraint (e.g., foreign key) — optional but helps debugging |
+
 USE Games;
 
--- Create Users table
 CREATE TABLE
     Users (
-        -- Unique user ID with auto-increment
         UserID INT IDENTITY (1, 1) PRIMARY KEY,
-
-        -- Username must be unique and not null
         Username VARCHAR(100) NOT NULL UNIQUE,
-
-        -- Email must be unique and not null
-        Email VARCHAR(255) NOT NULL UNIQUE CHECK (LEN (Email) >= 5), -- <-- inline email check
-
-        -- Optional join date, defaults to current date
+        Email VARCHAR(255) NOT NULL UNIQUE CHECK (LEN (Email) >= 5), --<-- Inline check constraint for email length
         JoinDate DATE DEFAULT GETDATE (),
-
-        -- Optional last login date
         LastLogin DATETIME,
         
-        -- Create a constraint to ensure the email is in a valid format
+        -- Create a constraint
         -- Or you can use inline check like above
         CONSTRAINT CK_Email_Length CHECK (LEN(Email) >= 5),
 
+        -- Check constraint for JoinDate
         CHECK (JoinDate <= GETDATE ()),
     );
 
--- Create GameList table with a foreign key reference to Users
+---------------------------------------------------
+
 CREATE TABLE
     GameList (
         -- Primary Key
@@ -34,7 +42,6 @@ CREATE TABLE
         -- Foreign Key to Users table
         UserID INT NOT NULL,
 
-        -- Game details
         GameName VARCHAR(255) NOT NULL,
         GameType VARCHAR(100),
         HoursPlayed INT CHECK (HoursPlayed >= 0),
@@ -52,7 +59,8 @@ CREATE TABLE
             ON UPDATE CASCADE
     );
 
---
+---------------------------------------------------
+
 CREATE TABLE
     GameReviews (
         ReviewID INT IDENTITY (1, 1) PRIMARY KEY,

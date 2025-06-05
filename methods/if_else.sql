@@ -13,10 +13,6 @@ ELSE IF @Country = 'USA'
       SET @CustomerCount1 = (SELECT COUNT(*) FROM Customers WHERE Country = 'USA')
       PRINT 'USA Customers Found: ' + CAST(@CustomerCount1 AS VARCHAR(10))
    END
-ELSE IF @Country = 'Mexico'
-   BEGIN
-      PRINT 'Mexico Customers Found'
-   END
 ELSE
    BEGIN
       PRINT 'No Customers Found'
@@ -28,17 +24,11 @@ IF EXISTS (SELECT * FROM Customers WHERE Country = 'Turkey')
    BEGIN
       PRINT 'Turkey Customers Found'
    END
-ELSE IF 
-   EXISTS (SELECT * FROM Customers WHERE Country = 'USA')
+ELSE IF EXISTS (SELECT * FROM Customers WHERE Country = 'USA')
    BEGIN
       DECLARE @CustomerCount2 INT
       SET @CustomerCount2 = (SELECT COUNT(*) FROM Customers WHERE Country = 'USA')
       PRINT 'USA Customers Found: ' + CAST(@CustomerCount2 AS VARCHAR(10))
-   END
-ELSE IF 
-   EXISTS (SELECT * FROM Customers WHERE Country = 'Mexico')
-   BEGIN
-      PRINT 'Mexico Customers Found'
    END
 ELSE
    BEGIN
