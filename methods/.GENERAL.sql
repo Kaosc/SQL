@@ -19,17 +19,30 @@ ALTER TABLE gamelist ADD website TEXT;
 -- Delete entire column
 ALTER TABLE gamelist DROP COLUMN website;
 
--- Rename column 
-EXEC sp_rename 'gamelist.gameType', 'gameTypeNew', 'COLUMN';
+-- Add new column with default value
+ALTER TABLE gamelist ADD gameType NVARCHAR(50) DEFAULT 'Action';
 
 -- Change column data type 
 ALTER TABLE gamelist ALTER COLUMN GameType NVARCHAR(50);
+
+-- Rename column 
+EXEC sp_rename 'gamelist.gameType', 'gameTypeNew', 'COLUMN';
 
 -- Update specific row
 UPDATE gamelist SET gameType = 'Survival' WHERE game_id = 5;
 
 -- Delete row with specific condition
 DELETE FROM Games WHERE game_id = 2;
+
+-- Insert new row
+INSERT INTO gamelist (game_id, gameName, gameType, hoursPlayed) 
+VALUES (6, 'Hollow Knight', 'Metroidvania', 50);
+
+-- Insert multiple rows
+INSERT INTO gamelist (game_id, gameName, gameType, hoursPlayed)
+VALUES 
+(7, 'Stardew Valley', 'Simulation', 100),
+(8, 'Celeste', 'Platformer', 30);
 
 -- TRY CATCH 
 BEGIN TRY

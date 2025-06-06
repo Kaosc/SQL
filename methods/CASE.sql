@@ -32,6 +32,7 @@ SELECT GameID,
    END AS AchievementLevel
 FROM GameList
 WHERE GameType = 'Action';
+
 ------------------------------------------------------
 
 SELECT ProductName,

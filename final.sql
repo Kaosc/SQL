@@ -1,3 +1,9 @@
+USE Games
+GO
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+
 SELECT
    CASE
       WHEN Age BETWEEN 18 AND 24 THEN '18-24'
@@ -16,7 +22,6 @@ GROUP BY
    END
 GO
 
------------------------------------------------------------------
 -- Same thing but with CTE to prevent repeating the CASE statement
 
 WITH AgeGroups AS (
@@ -37,28 +42,23 @@ GROUP BY AgeGroup;
 ----------------------------------------------------------------
 ----------------------------------------------------------------
 
-DECLARE @group NVARCHAR(10)
-
-IF EXISTS (SELECT 1 FROM Customers WHERE Age BETWEEN 18 AND 24)
+IF EXISTS (SELECT * FROM Users WHERE Age BETWEEN 18 AND 24)
 BEGIN
     SELECT '18-24' AS AgeGroup, COUNT(*) AS CountInGroup
-    FROM Customers
+    FROM Users
     WHERE Age BETWEEN 18 AND 24
 END
 
-IF EXISTS (SELECT 1 FROM Customers WHERE Age BETWEEN 25 AND 39)
+IF EXISTS (SELECT * FROM Users WHERE Age BETWEEN 25 AND 39)
 BEGIN
     SELECT '25-39' AS AgeGroup, COUNT(*) AS CountInGroup
-    FROM Customers
+    FROM Users
     WHERE Age BETWEEN 25 AND 39
 END
 
-IF EXISTS (SELECT 1 FROM Customers WHERE Age BETWEEN 40 AND 60)
+IF EXISTS (SELECT * FROM Users WHERE Age BETWEEN 40 AND 60)
 BEGIN
     SELECT '40-60' AS AgeGroup, COUNT(*) AS CountInGroup
-    FROM Customers
+    FROM Users
     WHERE Age BETWEEN 40 AND 60
 END
-
-----------------------------------------------------------------
-----------------------------------------------------------------
